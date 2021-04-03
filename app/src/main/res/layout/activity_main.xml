@@ -45,9 +45,31 @@
         android:textStyle="bold"
         app:backgroundTint="@color/black"
         app:cornerRadius="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLeaderboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:strokeColor="#2196F3"
+        app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/buttonLeaderboard"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/frizquadrataregular"
+        android:text="Leaderboard"
+        android:textColor="@color/teal_200"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/black"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAbout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStart"
         app:strokeColor="#2196F3"
         app:strokeWidth="2dp" />
 
@@ -64,8 +86,9 @@
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLeaderboard"
         app:strokeColor="#2196F3"
         app:strokeWidth="2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

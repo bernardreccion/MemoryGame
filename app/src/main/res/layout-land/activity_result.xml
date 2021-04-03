@@ -27,7 +27,7 @@
         app:strokeWidth="2dp" />
 
     <Button
-        android:id="@+id/buttonQuit"
+        android:id="@+id/buttonBack"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:fontFamily="@font/frizquadrataregular"
@@ -56,7 +56,7 @@
         app:backgroundTint="@color/black"
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonNewGame"
-        app:layout_constraintEnd_toStartOf="@+id/buttonQuit"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBack"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonNewGame"
         app:strokeColor="#2196F3"
@@ -70,7 +70,7 @@
         android:textColor="@android:color/holo_orange_light"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonQuit"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
