@@ -29,12 +29,7 @@ class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
         val db = this.writableDatabase
         var cv = ContentValues()
         cv.put(COL_TIME, record.time)
-        var result = db.insert(TABLE_NAME, null, cv)
-        if (result == -1.toLong()) {
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
-        }
+        db.insert(TABLE_NAME, null, cv)
         db.close()
     }
 
