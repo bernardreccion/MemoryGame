@@ -168,7 +168,6 @@ class GameActivity : AppCompatActivity() {
         if(cards[position1].identifier == cards[position2].identifier) {
             cards[position1].isMatched = true
             cards[position2].isMatched = true
-            Toast.makeText(this, "Match found!", Toast.LENGTH_SHORT).show()
         }
     }
 
