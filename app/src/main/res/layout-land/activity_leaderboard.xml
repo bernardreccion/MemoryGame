@@ -102,7 +102,7 @@
             <TextView
                 android:id="@+id/textViewLeaderboard"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="225dp"
                 android:fontFamily="@font/frizquadrataregular"
                 android:gravity="center|top"
                 android:paddingBottom="10dp"
