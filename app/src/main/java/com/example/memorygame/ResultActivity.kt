@@ -31,6 +31,11 @@ class ResultActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.buttonLeaderboard.setOnClickListener {
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.buttonQuit.setOnClickListener {
             finishAffinity()
             exitProcess(-1)
