@@ -32,8 +32,8 @@ class ResultActivity : AppCompatActivity() {
 
         binding.chronTimer.text = score
 
+        isQualifiedTop10()
         insertRecord()
-        insertTop10()
 
         binding.buttonNewGame.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
@@ -68,13 +68,14 @@ class ResultActivity : AppCompatActivity() {
         db.insertData(record)
     }
 
-    fun insertTop10() {
+    fun isQualifiedTop10() {
         var data = db.viewData()
         var top10 = data.take(10)
 
         for(i in 0..(top10.size-1)) {
             if(timeFinished <= top10[i].time) {
                 Toast.makeText(this, "You made it to top 10!", Toast.LENGTH_SHORT).show()
+                break
             }
         }
     }
