@@ -172,6 +172,7 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    //count matched cards
     private fun countMatched() : Int{
         var ctr = 0
         for(card in cards) {
@@ -190,4 +191,5 @@ class GameActivity : AppCompatActivity() {
         }
         backPressedTime = System.currentTimeMillis()
     }
+
 }
