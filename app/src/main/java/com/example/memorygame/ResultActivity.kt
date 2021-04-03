@@ -20,6 +20,8 @@ class ResultActivity : AppCompatActivity() {
 
         chronometer = binding.chronTimer
         val timeFinished = intent.getLongExtra(TIMEWHENSTOPPED,chronometer.base)
+        chronometer.stop()
+
         val score = String.format("%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(timeFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(timeFinished)),
                 TimeUnit.MILLISECONDS.toSeconds(timeFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeFinished)))
@@ -32,11 +34,14 @@ class ResultActivity : AppCompatActivity() {
         }
 
         binding.buttonLeaderboard.setOnClickListener {
-            val intent = Intent(this, GameActivity::class.java)
+            val intent = Intent(this, LeaderboardActivity::class.java)
+            var record = Record(timeFinished)
+            var db = DatabaseHandler(this)
+            db.insertData(record)
             startActivity(intent)
         }
 
-        binding.buttonQuit.setOnClickListener {
+        binding.buttonQuit?.setOnClickListener {
             finishAffinity()
             exitProcess(-1)
         }

@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.buttonLeaderboard.setOnClickListener {
+            val intent = Intent(this, LeaderboardActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.buttonAbout.setOnClickListener {
             val intent = Intent(this, AboutActivity::class.java)
             startActivity(intent)
