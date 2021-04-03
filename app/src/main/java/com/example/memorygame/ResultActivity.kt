@@ -62,13 +62,13 @@ class ResultActivity : AppCompatActivity() {
         backPressedTime = System.currentTimeMillis()
     }
 
-    fun insertRecord() {
+    private fun insertRecord() {
         var record = Record(timeFinished)
         var db = DatabaseHandler(this)
         db.insertData(record)
     }
 
-    fun isQualifiedTop10() {
+    private fun isQualifiedTop10() {
         var data = db.viewData()
         var top10 = data.take(10)
 
