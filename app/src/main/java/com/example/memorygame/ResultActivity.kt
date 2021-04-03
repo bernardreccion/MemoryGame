@@ -13,20 +13,27 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
     private lateinit var chronometer: Chronometer
     private var backPressedTime: Long = 0
+    private var timeFinished: Long = 0
+    private val db = DatabaseHandler(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         chronometer = binding.chronTimer
-        val timeFinished = intent.getLongExtra(TIMEWHENSTOPPED,chronometer.base)
+        timeFinished = intent.getLongExtra(TIMEWHENSTOPPED,chronometer.base)
         chronometer.stop()
+
+
 
         val score = String.format("%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(timeFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(timeFinished)),
                 TimeUnit.MILLISECONDS.toSeconds(timeFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeFinished)))
 
         binding.chronTimer.text = score
+
+        insertRecord()
+        insertTop10()
 
         binding.buttonNewGame.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
@@ -35,9 +42,6 @@ class ResultActivity : AppCompatActivity() {
 
         binding.buttonLeaderboard.setOnClickListener {
             val intent = Intent(this, LeaderboardActivity::class.java)
-            var record = Record(timeFinished)
-            var db = DatabaseHandler(this)
-            db.insertData(record)
             startActivity(intent)
         }
 
@@ -56,6 +60,23 @@ class ResultActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Tap again to move to home screen", Toast.LENGTH_SHORT).show()
         }
         backPressedTime = System.currentTimeMillis()
+    }
+
+    fun insertRecord() {
+        var record = Record(timeFinished)
+        var db = DatabaseHandler(this)
+        db.insertData(record)
+    }
+
+    fun insertTop10() {
+        var data = db.viewData()
+        var top10 = data.take(10)
+
+        for(i in 0..(top10.size-1)) {
+            if(timeFinished <= top10[i].time) {
+                Toast.makeText(this, "You made it to top 10!", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 }
