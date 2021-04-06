@@ -5,10 +5,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-val DATABASE_NAME = "MyDB"
-val TABLE_NAME = "Leaderboards"
-val COL_TIME = "Time"
-val COL_ID = "ID"
 
 class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
     //will be executed when the device doesn't contain a database
@@ -25,14 +21,14 @@ class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
 
     fun insertData(record: Record) {
         val db = this.writableDatabase
-        var cv = ContentValues()
+        val cv = ContentValues()
         cv.put(COL_TIME, record.time)
         db.insert(TABLE_NAME, null, cv)
         db.close()
     }
 
     fun viewData() :MutableList<Record> {
-        var list :MutableList<Record> = ArrayList()
+        val list :MutableList<Record> = ArrayList()
 
         val db = this.readableDatabase
         val query = "SELECT * FROM " + TABLE_NAME +
@@ -41,7 +37,7 @@ class DatabaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
         val result = db.rawQuery(query,null)
         if(result.moveToFirst()) {
             do {
-                var record = Record()
+                val record = Record()
                 record.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
                 record.time = result.getString(result.getColumnIndex(COL_TIME)).toLong()
                 list.add(record)
