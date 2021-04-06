@@ -7,6 +7,5 @@ class Record {
     constructor(time: Long) {
         this.time = time
     }
-    constructor() {
-    }
+    constructor()
 }
