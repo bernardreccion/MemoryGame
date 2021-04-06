@@ -54,7 +54,7 @@ class LeaderboardActivity : AppCompatActivity() {
         if(backPressedTime + 2000 > System.currentTimeMillis()) {
             super.onBackPressed()
         } else {
-            Toast.makeText(applicationContext, "Tap again to see results", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Tap again to go back", Toast.LENGTH_SHORT).show()
         }
         backPressedTime = System.currentTimeMillis()
     }
