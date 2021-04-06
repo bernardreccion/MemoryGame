@@ -21,11 +21,13 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         chronometer = binding.chronTimer
+
+        //get the intent from previous activity
         timeFinished = intent.getLongExtra(TIMEWHENSTOPPED,chronometer.base)
         chronometer.stop()
 
 
-
+        //string format to display 00:00 for better readability (from Long to String format)
         val score = String.format("%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(timeFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(timeFinished)),
                 TimeUnit.MILLISECONDS.toSeconds(timeFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeFinished)))
@@ -62,15 +64,17 @@ class ResultActivity : AppCompatActivity() {
         backPressedTime = System.currentTimeMillis()
     }
 
+    //insert record to the database
     private fun insertRecord() {
-        var record = Record(timeFinished)
-        var db = DatabaseHandler(this)
+        val record = Record(timeFinished)
+        val db = DatabaseHandler(this)
         db.insertData(record)
     }
 
+    //check if the current time makes it to the top 10 of the leaderboard
     private fun isQualifiedTop10() {
-        var data = db.viewData()
-        var top10 = data.take(10)
+        val data = db.viewData()
+        val top10 = data.take(10)
 
         for(i in 0..(top10.size-1)) {
             if(timeFinished <= top10[i].time) {
