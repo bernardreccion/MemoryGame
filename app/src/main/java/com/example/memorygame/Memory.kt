@@ -1,6 +1,5 @@
 package com.example.memorygame
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
