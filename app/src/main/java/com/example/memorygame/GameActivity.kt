@@ -28,7 +28,7 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        chronometer = findViewById(R.id.chronTimer)
+        chronometer = binding.chronTimer
 
         if (savedInstanceState?.getIntArray(IMAGES) != null) {
             images = savedInstanceState.getIntArray(IMAGES)?.toMutableList()!!
@@ -66,10 +66,10 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
+        //exit process this activity once the user moves to the next activity
         if (intent.getBooleanExtra(EXIT, false)) {
             finish()
         }
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -80,12 +80,14 @@ class GameActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
     }
 
+    //pauses the timer when the app closes
     override fun onPause() {
         timeWhenStopped = chronometer.base - SystemClock.elapsedRealtime()
         chronometer.stop()
         super.onPause()
     }
 
+    //resumes the timer when the app opens
     override fun onResume() {
         chronometer.base = SystemClock.elapsedRealtime() + timeWhenStopped
         chronometer.start()
@@ -116,11 +118,14 @@ class GameActivity : AppCompatActivity() {
 
         //check if all cards are faced up
         if(countMatched() == cards.size) {
+            //move to next activity
             val intent = Intent(this, ResultActivity::class.java)
+            //set the time when all cards are faced up and pass it on the next activity
             timeWhenStopped = SystemClock.elapsedRealtime() - chronometer.base
             chronometer.stop()
             intent.putExtra(TIMEWHENSTOPPED, timeWhenStopped)
 
+            //this intent allows to clear/finish this activity when the user moves to the next activity
             val intent2 = Intent(this, GameActivity::class.java)
             intent2.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             intent2.putExtra(EXIT, true)
@@ -138,12 +143,14 @@ class GameActivity : AppCompatActivity() {
             Toast.makeText(this, "Card is already face up", Toast.LENGTH_SHORT).show()
             return
         }
+
         //if the card was face up, change it to face down; if it was down, change it to face up
         //first case - 0 cards previously flipped over -> flip over the selected card
         //second case - 1 card previously flipped over -> flip over the selected card and check if the image match
         //third case - 2 cards previously flipped over -> restore cards and flipped over the selected card
+
+        //0 or 2 selected cards previously
         if(indexOfSingleCard == null) {
-            //0 or 2 selected cards previously
             //at the end of this turn, there is now a single selected card
             restoreCards()
             indexOfSingleCard = position
