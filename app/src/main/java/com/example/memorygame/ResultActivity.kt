@@ -99,12 +99,19 @@ class ResultActivity : AppCompatActivity() {
         val data = db.viewData()
         val top10 = data.take(10)
 
+        //first record check
+        if(top10.isEmpty()) {
+            Toast.makeText(this, "You made it to top 10!", Toast.LENGTH_SHORT).show()
+        }
+
+        //current time is faster than previous while still in top 10
         for(i in 0..(top10.size-1)) {
-            if(timeFinished <= top10[i].time) {
+            if(timeFinished <= top10[i].time || top10.size <= 10) {
                 Toast.makeText(this, "You made it to top 10!", Toast.LENGTH_SHORT).show()
                 break
             }
         }
+
     }
 
 
