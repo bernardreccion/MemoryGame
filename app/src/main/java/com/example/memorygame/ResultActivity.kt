@@ -68,6 +68,25 @@ class ResultActivity : AppCompatActivity() {
         backPressedTime = System.currentTimeMillis()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_result, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.itemShare) {
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "LoL Champions: Memory Game: \n You have finished the game at $score on ${Calendar.getInstance().time}")
+
+                type = "text/plain"
+            }
+            startActivity(intent)
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     //insert record to the database
     private fun insertRecord() {
         val record = Record(timeFinished)
@@ -88,23 +107,6 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_result, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.itemShare) {
-            val intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "LoL Champions: Memory Game: \n You have finished the game at $score on ${Calendar.getInstance().time}")
-
-                type = "text/plain"
-            }
-            startActivity(intent)
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
 }
