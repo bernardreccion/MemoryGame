@@ -30,7 +30,6 @@ class ResultActivity : AppCompatActivity() {
         timeFinished = intent.getLongExtra(TIMEWHENSTOPPED,chronometer.base)
         chronometer.stop()
 
-
         //string format to display 00:00 for better readability (from Long to String format)
         score = String.format("%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(timeFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(timeFinished)),
@@ -55,7 +54,6 @@ class ResultActivity : AppCompatActivity() {
             finishAffinity()
             exitProcess(-1)
         }
-
     }
 
     //add toast back function
@@ -111,9 +109,5 @@ class ResultActivity : AppCompatActivity() {
                 break
             }
         }
-
     }
-
-
-
 }
