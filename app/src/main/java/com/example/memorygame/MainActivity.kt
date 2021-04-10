@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AboutActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     //add toast back function
