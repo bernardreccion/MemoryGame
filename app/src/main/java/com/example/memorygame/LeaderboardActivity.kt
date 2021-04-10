@@ -29,7 +29,6 @@ class LeaderboardActivity : AppCompatActivity() {
             finishAffinity()
             exitProcess(-1)
         }
-
     }
 
     private fun viewData() {
