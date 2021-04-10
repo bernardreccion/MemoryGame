@@ -19,7 +19,6 @@ class AboutActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     //add toast back function
@@ -31,5 +30,4 @@ class AboutActivity : AppCompatActivity() {
         }
         backPressedTime = System.currentTimeMillis()
     }
-
 }
