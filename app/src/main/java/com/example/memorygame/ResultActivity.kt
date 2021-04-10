@@ -76,7 +76,6 @@ class ResultActivity : AppCompatActivity() {
             val intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, "LoL Champions: Memory Game: \n You have finished the game at $score on ${Calendar.getInstance().time}")
-
                 type = "text/plain"
             }
             startActivity(intent)
