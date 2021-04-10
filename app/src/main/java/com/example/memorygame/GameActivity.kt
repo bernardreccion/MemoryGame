@@ -15,7 +15,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var chronometer: Chronometer
     private var timeWhenStopped: Long = 0
     private var backPressedTime: Long = 0
-    private var indexOfSingleCard: Int? = null // initially, no cards are selected on the board
+    private var indexOfSingleCard: Int? = null //init, no cards are selected on the board
     private val btnImages by lazy {
         listOf(binding.imageButton1, binding.imageButton2, binding.imageButton3, binding.imageButton4, binding.imageButton5,
                 binding.imageButton6, binding.imageButton7, binding.imageButton8, binding.imageButton9, binding.imageButton10,
@@ -129,7 +129,6 @@ class GameActivity : AppCompatActivity() {
             val intent2 = Intent(this, GameActivity::class.java)
             intent2.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             intent2.putExtra(EXIT, true)
-
             startActivity(intent2)
             startActivity(intent)
         }
@@ -143,11 +142,6 @@ class GameActivity : AppCompatActivity() {
             Toast.makeText(this, "Card is already face up", Toast.LENGTH_SHORT).show()
             return
         }
-
-        //if the card was face up, change it to face down; if it was down, change it to face up
-        //first case - 0 cards previously flipped over -> flip over the selected card
-        //second case - 1 card previously flipped over -> flip over the selected card and check if the image match
-        //third case - 2 cards previously flipped over -> restore cards and flipped over the selected card
 
         //0 or 2 selected cards previously
         if(indexOfSingleCard == null) {
@@ -198,5 +192,4 @@ class GameActivity : AppCompatActivity() {
         }
         backPressedTime = System.currentTimeMillis()
     }
-
 }
